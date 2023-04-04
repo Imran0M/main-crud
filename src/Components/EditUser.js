@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
 import { useHistory, useParams } from 'react-router-dom'
 import Base from './Base'
 import { AppCont } from './AppProvider'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function EditUser() {
   const {user, setUser}=AppCont()
@@ -55,22 +56,23 @@ function EditUser() {
   return (
     <Base tittle="Edit user">
          <div className="adduser-style container">
-          <input placeholder="id"
+         <TextField label="Id" color="success" focused
           value={id}
-          onChange={(event)=>setIdx(event.target.value)}/>
-      <input 
-      placeholder="Name"
-      value={name}
-      onChange={(event)=>setName(event.target.value)}
-      />
-      <input placeholder="Dob"
-      value={dob}
-      onChange={(event)=>setDob(event.target.value)}/>
-      <input placeholder="Age"
-      value={age}
-      onChange={(event)=>setAge(event.target.value)}
-      />
-      <Button onClick={updateUser}className="adduser"  varient="dark">Update user</Button>
+          onChange={(event) => setIdx(event.target.value)} />
+
+        <TextField label="Name" color="success" focused
+          value={name}
+          onChange={(event) => setName(event.target.value)} />
+        <TextField label="Dob" color="success" focused
+          value={dob}
+          onChange={(event) => setDob(event.target.value)} />
+        <TextField label="Age" color="success" focused
+          value={age}
+          onChange={(event) => setAge(event.target.value)} />
+      {/* <button className=""  >Update user</button> */}
+      <Button onClick={updateUser} variant="contained" color="success">
+ Update
+</Button>
       </div>
     </Base>
   )

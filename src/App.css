@@ -45,7 +45,12 @@
   align-items: center;
   gap: 1rem;
 }
-input{
-  width: 150px;
+
+.adduser{
+  background-color: #539165;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
 }
 
