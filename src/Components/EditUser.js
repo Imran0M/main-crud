@@ -7,7 +7,7 @@ import { AppCont } from './AppProvider'
 function EditUser() {
   const {user, setUser}=AppCont()
     const history = useHistory()
-    const[idx ,setIdx]=useState('')
+    const[idx ,setIdx]=useState()
     const [name , setName]=useState('')
     const [dob , setDob]= useState('')
     const [age , setAge]=useState('')

@@ -8,7 +8,7 @@ function AddUser(){
   const {user , setUser}=AppCont()
 
   const history = useHistory()
-  const[ id, setId]=useState('')
+  const[ id, setId]=useState()
   const [name , setName]=useState('')
   const [dob , setDob]= useState('')
   const [age , setAge]=useState('')
