@@ -1,0 +1,26 @@
+export const Data=[
+    {   
+        id:"01",
+        name:"Bog",
+        dob:"04-03-2000",
+        age:"23"
+    },
+    {
+        id:"02",
+        name:"John",
+        dob:"04-03-2001",
+        age:"21"
+    },
+    {
+        id:"03",
+        name:"React",
+        dob:"04-03-1998",
+        age:"18"
+    },
+    {
+        id:"04",
+        name:"Maxi",
+        dob:"04-03-1990",
+        age:"28"
+    },
+]
