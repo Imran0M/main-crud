@@ -7,7 +7,7 @@ import { AppCont } from './AppProvider'
 function EditUser() {
   const {user, setUser}=AppCont()
     const history = useHistory()
-    const[idx ,setIdx]=useState()
+    const[idx ,setIdx]=useState('')
     const [name , setName]=useState('')
     const [dob , setDob]= useState('')
     const [age , setAge]=useState('')
@@ -31,7 +31,7 @@ function EditUser() {
    }
 
   try {
-    const response = await fetch(`https://642903155a40b82da4cb3c1b.mockapi.io/students/${id}`,{
+    const response = await fetch(`https://6421c7e934d6cd4ebd7bbdbe.mockapi.io/common/${id}`,{
       method:"PUT",
       body:JSON.stringify(editedUser),
       headers:{

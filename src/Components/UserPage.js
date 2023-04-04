@@ -8,7 +8,7 @@ function UserPage() {
   const { user, setUser } = AppCont()
   const deleteUser = async (idx) => {
     try {
-      const response = await fetch(`https://642903155a40b82da4cb3c1b.mockapi.io/students/${idx}`,{
+      const response = await fetch(`https://6421c7e934d6cd4ebd7bbdbe.mockapi.io/common/${idx}`,{
         method:"Delete",
         headers:{
           "Content-Type":"application/json"

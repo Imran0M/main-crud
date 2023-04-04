@@ -20,7 +20,7 @@ function AddUser(){
       age
     }
    try {
-    const response = await fetch("https://642903155a40b82da4cb3c1b.mockapi.io/students",{
+    const response = await fetch("https://6421c7e934d6cd4ebd7bbdbe.mockapi.io/common",{
       method:"POST",
       body: JSON.stringify(newUser),
       headers:{
