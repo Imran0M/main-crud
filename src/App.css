@@ -28,6 +28,7 @@
   background-color: #539165;
   color: aliceblue;
   padding: 5px;
+  width: 70px;
 }
 .delete-btn{
   border: none;
@@ -35,6 +36,8 @@
   background-color: crimson;
   color: aliceblue;
   padding: 5px;
+  margin-top: 7px;
+  width: 70px;
 }
 .adduser-style{
   display: flex;
