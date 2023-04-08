@@ -9,9 +9,9 @@ import * as yup from 'yup'
 
 //formik validation
 const validationUser = yup.object({
-  id: yup.string().required('please fill the Id'),
-  name: yup.string().required('please fill your name'),
-  dob: yup.string().required('please your dob'),
+  id: yup.string().required('please fill the Id').min(2),
+  name: yup.string().required('please fill your name').min(4),
+  dob: yup.string().required('please your dob').max(10),
   age: yup.string().required('please fill your age').max(3)
 })
 function AddUser() {
@@ -95,7 +95,6 @@ function AddUser() {
            />
         {touched.age && errors.age ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.age}</p> : ""}
         <Button type="submit" variant="contained" color="success" onClick={adding} >Add user</Button>
-
       </form>
     </Base>
   )
