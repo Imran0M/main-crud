@@ -1,25 +1,49 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Base from './Base'
 import { AppCont } from './AppProvider'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useFormik } from 'formik';
+import * as yup from 'yup'
 
+//formik validation
+const validationUser = yup.object({
+  id: yup.string().required('please fill the Id'),
+  name: yup.string().required('please fill your name'),
+  dob: yup.string().required('please your dob'),
+  age: yup.string().required('please fill your age').max(3)
+})
 function AddUser() {
+
+
+  const { values, handleChange, handleSubmit, handleBlur, errors, touched } = useFormik({
+    initialValues: {
+      id: "",
+      name: "",
+      dob: "",
+      age: "",
+    },
+    validationSchema: validationUser,
+    onSubmit: (newUser) => {
+      adding(newUser)
+    }
+  })
+
   const { user, setUser } = AppCont()
 
   const history = useHistory()
-  const [id, setId] = useState('')
-  const [name, setName] = useState('')
-  const [dob, setDob] = useState('')
-  const [age, setAge] = useState('')
-  const adding = async () => {
-    const newUser = {
-      id,
-      name,
-      dob,
-      age
-    }
+  // const [id, setId] = useState('')
+  // const [name, setName] = useState('')
+  // const [dob, setDob] = useState('')
+  // const [age, setAge] = useState('')
+  const adding = async (newUser) => {
+    // const newUser = {
+    //   id,
+    //   name,
+    //   dob,
+    //   age
+    // }
     try {
       const response = await fetch("https://6421c7e934d6cd4ebd7bbdbe.mockapi.io/common", {
         method: "POST",
@@ -40,26 +64,43 @@ function AddUser() {
   }
   return (
     <Base tittle="Add User">
-      <div className="adduser-style container">
+      <form onSubmit={handleSubmit} className="adduser-style container">
 
         <TextField label="Id" color="success" focused
-          value={id}
-          onChange={(event) => setId(event.target.value)} />
-
+          value={values.id}
+          name="id"
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {touched.id && errors.id ? <p style={{ color: "crimson", fontSize: "8px", }}>{errors.id}</p> : ""}
         <TextField label="Name" color="success" focused
-          value={name}
-          onChange={(event) => setName(event.target.value)} />
+          value={values.name}
+          name="name"
+          onBlur={handleBlur}
+          onChange={handleChange}
+           />
+        {touched.name && errors.name ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.name}</p> : ""}
         <TextField label="Dob" color="success" focused
-          value={dob}
-          onChange={(event) => setDob(event.target.value)} />
+          value={values.dob}
+          name="dob"
+          onBlur={handleBlur}
+          onChange={handleChange} 
+          />
+        {touched.dob && errors.dob ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.dob}</p> : ""}
         <TextField label="Age" color="success" focused
-          value={age}
-          onChange={(event) => setAge(event.target.value)} />
-        <Button  variant="contained" color="success" onClick={adding} >Add user</Button>
-        
-      </div>
+          value={values.age}
+          name="age"
+          onBlur={handleBlur}
+          onChange={handleChange}
+           />
+        {touched.age && errors.age ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.age}</p> : ""}
+        <Button type="submit" variant="contained" color="success" onClick={adding} >Add user</Button>
+
+      </form>
     </Base>
   )
 }
 
 export default AddUser
+
+

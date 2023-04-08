@@ -52,7 +52,6 @@ function UserPage() {
                   <td className="col-3">{student.age}</td>
                   <td className="col-3">
                     <div>
-                      
                       <button onClick={() => history.push(`edit/${student.id}`)} className="edit-btn" >Edit </button>{' '}
                       <button onClick={() => deleteUser(student.id)} className="delete-btn"> Delete </button>{' '}
                     </div>
