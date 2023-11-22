@@ -4,8 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { AppCont } from './AppProvider';
 
 function UserPage() {
-
   const { user, setUser } = AppCont()
+
+  // delete book api
+  
   const deleteUser = async (idx) => {
     try {
       const response = await fetch(`https://6421c7e934d6cd4ebd7bbdbe.mockapi.io/common/${idx}`,{
@@ -23,45 +25,44 @@ function UserPage() {
     } catch (error) {
       console.log("Data not found")
     }
-    const deletedUser = user.filter((student) => student.id !== idx)
-    setUser(deletedUser)
+    const deletedBook = user.filter((book) => book.id !== idx)
+    setUser(deletedBook)
   }
   const history = useHistory()
-
   return (
     <Base
-      tittle="USER DETAILS">
+      tittle="Book Details">
       <div className="container">
         <Table>
           <thead>
             <tr>
-              <th className="col-3">Name</th>
-              <th className="col-3" >DOB </th>
-              <th className="col-3">AGE</th>
-              <th className="col-3">Operation</th>
+              <th className="col-2">Title</th>
+              <th className="col-2" >Author </th>
+              <th className="col-2">ISBN Number</th>
+              <th className="col-2">Publication Date</th>
+              <th className='col-2'>Operation</th>
             </tr>
           </thead>
         </Table>
-        {user.map((student, id) => (
+        {user.map((book, id) => (
           <div key={id}>
             <Table >
               <tbody>
                 <tr>
-                  <td className="col-3">{student.name}</td>
-                  <td className="col-3">{student.dob}</td>
-                  <td className="col-3">{student.age}</td>
-                  <td className="col-3">
+                  <td className="col-2">{book.title}</td>
+                  <td className="col-2">{book.author}</td>
+                  <td className="col-2">{book.isbnNumber}</td>
+                  <td className='col-2'>{book.publicationDate}</td>
+                  <td className="col-2">
                     <div>
-                      <button onClick={() => history.push(`edit/${student.id}`)} className="edit-btn" >Edit </button>{' '}
-                      <button onClick={() => deleteUser(student.id)} className="delete-btn"> Delete </button>{' '}
+                      <button onClick={() => history.push(`edit/${book.id}`)} className="edit-btn" >Edit </button>{' '}
+                      <button onClick={() => deleteUser(book.id)} className="delete-btn"> Delete </button>{' '}
                     </div>
                   </td>
                 </tr>
               </tbody>
             </Table>
-
           </div>
-
         ))}
       </div>
     </Base>

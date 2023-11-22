@@ -9,20 +9,20 @@ import * as yup from 'yup'
 
 //formik validation
 const validationUser = yup.object({
-  id: yup.string().required('please fill the Id').min(2),
-  name: yup.string().required('please fill your name').min(4),
-  dob: yup.string().required('please your dob').max(10),
-  age: yup.string().required('please fill your age').max(3)
+  title: yup.string().required('Enter Title').min(2),
+  author: yup.string().required('Enter Author').min(4),
+  isbnNumber: yup.string().required('Enter ISBN Number').max(20),
+  publicationDate: yup.string().required('Enter Date').max(20)
 })
 function AddUser() {
 
-
   const { values, handleChange, handleSubmit, handleBlur, errors, touched } = useFormik({
     initialValues: {
-      id: "",
-      name: "",
-      dob: "",
-      age: "",
+      id: Math.random(),
+      title: "",
+      author: "",
+      isbnNumber: "",
+      publicationDate: "",
     },
     validationSchema: validationUser,
     onSubmit: (newUser) => {
@@ -31,19 +31,9 @@ function AddUser() {
   })
 
   const { user, setUser } = AppCont()
-
   const history = useHistory()
-  // const [id, setId] = useState('')
-  // const [name, setName] = useState('')
-  // const [dob, setDob] = useState('')
-  // const [age, setAge] = useState('')
+  // Add book api
   const adding = async (newUser) => {
-    // const newUser = {
-    //   id,
-    //   name,
-    //   dob,
-    //   age
-    // }
     try {
       const response = await fetch("https://6421c7e934d6cd4ebd7bbdbe.mockapi.io/common", {
         method: "POST",
@@ -57,7 +47,7 @@ function AddUser() {
       setUser([...user, data])
       history.push('/')
     } catch (error) {
-      console.log("data notfound")
+      console.log("data not found")
     }
 
 
@@ -66,35 +56,36 @@ function AddUser() {
     <Base tittle="Add User">
       <form onSubmit={handleSubmit} className="adduser-style container">
 
-        <TextField label="Id" color="success" focused
-          value={values.id}
-          name="id"
+        <TextField label="Title" color="success" focused
+          value={values.title}
+          name="title"
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.id && errors.id ? <p style={{ color: "crimson", fontSize: "8px", }}>{errors.id}</p> : ""}
-        <TextField label="Name" color="success" focused
-          value={values.name}
-          name="name"
+        {touched.title && errors.title ? <p style={{ color: "crimson", fontSize: "8px", }}>{errors.title}</p> : ""}
+        <TextField label="Author" color="success" focused
+          value={values.author}
+          name="author"
           onBlur={handleBlur}
           onChange={handleChange}
            />
-        {touched.name && errors.name ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.name}</p> : ""}
-        <TextField label="Dob" color="success" focused
-          value={values.dob}
-          name="dob"
+        {touched.author && errors.author ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.author}</p> : ""}
+        <TextField label="ISBN Number" color="success" focused
+          value={values.isbnNumber}
+          name="isbnNumber"
           onBlur={handleBlur}
           onChange={handleChange} 
           />
-        {touched.dob && errors.dob ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.dob}</p> : ""}
-        <TextField label="Age" color="success" focused
-          value={values.age}
-          name="age"
+        {touched.isbnNumber && errors.isbnNumber ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.isbnNumber}</p> : ""}
+        <TextField label="Publication Date" color="success" focused
+          value={values.publicationDate}
+          name="publicationDate"
           onBlur={handleBlur}
           onChange={handleChange}
            />
-        {touched.age && errors.age ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.age}</p> : ""}
-        <Button type="submit" variant="contained" color="success" onClick={adding} >Add user</Button>
+            
+        {touched.publicationDate && errors.publicationDate ? <p style={{ color: "crimson", fontSize: "8px" }}>{errors.publicationDate}</p> : ""}
+        <Button type="submit" variant="contained" color="success" onClick={adding} >Add Book</Button>
       </form>
     </Base>
   )

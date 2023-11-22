@@ -6,14 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppProvider from './Components/AppProvider';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Router>
         <AppProvider>
             <App />
         </AppProvider>
-
     </Router>
 
 
